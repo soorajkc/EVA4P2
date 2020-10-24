@@ -1,0 +1,75 @@
+Quiz Question 1
+What is the value of sigmoid(0) calculated from your code? (Answer up to 1 decimal point, e.g. 4.2 and NOT 4.29999999, no rounding off).
+0.5
+
+
+Quiz Question 2
+What is the value of dsigmoid(sigmoid(0)) calculated from your code?? (Answer up to 2 decimal point, e.g. 4.29 and NOT 4.29999999, no rounding off).
+0.25
+
+Quiz Question 3
+What is the value of tanh(dsigmoid(sigmoid(0))) calculated from your code?? (Answer up to 5 decimal point, e.g. 4.29999 and NOT 4.29999999, no rounding off).
+0.24492
+
+Quiz Question 4
+What is the value of dtanh(tanh(dsigmoid(sigmoid(0)))) calculated from your code?? (Answer up to 5 decimal point, e.g. 4.29999 and NOT 4.29999999, no rounding off).
+0.94001
+
+Quiz Question 4
+In the class definition below, what should be size_a, size_b, and size_c? ONLY use the variables defined above.
+
+size_a =  Hidden_Layer_size # write your code here
+size_b = z_size # write your code here
+size_c = X_size # write your code here
+
+
+
+
+def sigmoid(x): # sigmoid function
+  return 1/(1+np.exp(-x))# write your code here
+
+def dsigmoid(y): # derivative of sigmoid function
+  return y*(1-y)# write your code here
+
+def tanh(x): # tanh function
+  return np.tanh(x) # write your code here
+
+def dtanh(y): # derivative of tanh
+  return 1-y*y # write your code here
+
+
+
+
+f = sigmoid(np.dot(p.W_f.v, z) + p.b_f.v)# write your code here
+i = sigmoid(np.dot(p.W_i.v, z) + p.b_i.v)# write your code here
+C_bar = tanh(np.dot(p.W_C.v, z) + p.b_C.v)# write your code here
+
+C = f * C_prev + i * C_bar # write your code here
+o = sigmoid(np.dot(p.W_o.v, z) + p.b_o.v) # write your code here
+h = o * tanh(C) # write your code here
+
+v =  np.dot(p.W_v.v, h) + p.b_v.v # write your code here
+
+
+
+Quiz Question 5
+What is the output of 'print(len(forward(np.zeros((X_size, 1)), np.zeros((Hidden_Layer_size, 1)), np.zeros((Hidden_Layer_size, 1)), parameters)))'?
+9
+
+Quiz Question 6.
+Assuming you have fixed the forward function, run this command: z, f, i, C_bar, C, o, h, v, y = forward(np.zeros((X_size, 1)), np.zeros((Hidden_Layer_size, 1)), np.zeros((Hidden_Layer_size, 1)))
+
+Now, find these values:
+
+print(z.shape)
+print(np.sum(z))
+print(np.sum(f))
+Copy and paste exact values you get in the logs into the quiz.
+
+(85, 1)
+0.0
+5.0
+
+
+Run the above code for 50000 iterations making sure that you have 100 hidden layers and time_steps is 40. What is the loss value you're seeing?
+loss 5.439503
